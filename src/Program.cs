@@ -3,8 +3,6 @@ using Microsoft.Extensions.Hosting;
 
 namespace ConsoleApp
 {
-    // This console app was built from understanding: https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.1
-    // and with some influence from: https://dfederm.com/building-a-console-app-with-.net-generic-host/
     class Program
     {
         static void Main(string[] args)
