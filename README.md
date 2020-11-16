@@ -61,16 +61,27 @@ namespace ConsoleApp
 
 **Adding my hosted service to the host's service container:**
 ```csharp
-// Program.cs
-public static IHostBuilder CreateHostBuilder(string[] args)
-    => Host.CreateDefaultBuilder(args)
-        .ConfigureServices(services =>
+namespace ConsoleApp
+{
+    class Program
+    {
+        static void Main(string[] args)
         {
-            // Add IHostedService
-            services.AddHostedService<ConsoleHostedService>();
+            CreateHostBuilder(args).Build().Run();
+        }
 
-            ...
-        });
+        public static IHostBuilder CreateHostBuilder(string[] args)
+            => Host.CreateDefaultBuilder(args)
+                .ConfigureServices(services =>
+                {
+                    // Add IHostedService
+                    services.AddHostedService<ConsoleHostedService>();
+
+                    // Add services
+                    services.AddSingleton<IWorker, Worker>();
+                });
+    }
+}
 ```
 
 Essentially I am using my [ConsoleHostedService](https://github.com/RichardTeller/GenericHostConsoleApp/tree/main/src/ConsoleHostedService.cs) as an entry point into the console application logic. If you wanted, you could have multiple hosted services added to the host's service container in order to spin up several things at once.
